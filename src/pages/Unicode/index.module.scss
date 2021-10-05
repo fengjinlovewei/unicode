@@ -1,0 +1,48 @@
+.select-box {
+  display: flex;
+  .select-box-item {
+    margin-right: 40px;
+  }
+}
+.box {
+  width: 100%;
+  padding: 0;
+  margin: 20px auto;
+  border-color: #c1dad7;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  tr {
+    width: 100%;
+    div {
+      padding: 4px;
+      line-height: 30px;
+      height: 30px;
+      font-size: 14px;
+      color: #fff;
+    }
+    p {
+      font-size: 11px;
+      color: #999;
+      margin: 0;
+    }
+  }
+}
+
+.c1 {
+  background-color: #8552a1;
+}
+.c2 {
+  background-color: #2a5caa;
+}
+.c3 {
+  background-color: #69541b;
+}
+.c4 {
+  background-color: #ed1941;
+}
+.c5 {
+  background-color: #1d953f;
+}
+.c6 {
+  background-color: #596032;
+}
