@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Input, Table, Layout, Select } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Select, Modal, List } from 'antd';
 import _ from 'underscore';
 import axios from 'axios';
+import { unicodeToUTF8, unicodeToUTF16, unicodeToUTF32 } from '@/utils';
+
 import Style from './index.module.scss';
 
 const { Option } = Select;
@@ -12,6 +14,8 @@ export default () => {
   const [trLine, setTrLine] = useState([]);
   const [font, setFont] = useState([]);
   const [fontFamily, setFontFamily] = useState('Arial');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [code, setCode] = useState(0);
 
   const getclass = index => {
     if (index < 128) return 'c1';
@@ -36,19 +40,20 @@ export default () => {
 
   useEffect(() => {
     axios.defaults.baseURL = 'http://localhost:1991';
-    axios.get('/font').then(function (response) {
-      console.log(response.data);
-      if (response.status == 200 || response.status == 304) {
-        const data = response.data;
-        if (data.code === 0) {
-          setFont(data.data);
+    axios
+      .get('/font')
+      .then(function (response) {
+        console.log(response.data);
+        if (response.status === 200 || response.status === 304) {
+          const data = response.data;
+          if (data.code === 0) {
+            setFont(data.data);
+          }
         }
-      }
-      console.log(response.status);
-      console.log(response.statusText);
-      console.log(response.headers);
-      console.log(response.config);
-    });
+      })
+      .catch(err => {
+        console.log(err);
+      });
     const showList = _.throttle(() => {
       //函数体
       const wh = document.body.offsetHeight;
@@ -62,34 +67,76 @@ export default () => {
         setItem();
       }
     }, 100);
+    const showLayer = e => {
+      //console.log(e.target);
+    };
+    // const getGlobalVerifyFliter = (target) => {
+    //   let globalVerify = false;
+    //   while (target) {
+    //     globalVerify = (target.dataset || {}).globalVerify === 'true';
+    //     const tagName = target.tagName || '';
+    //     if (globalVerify || tagName.toLowerCase() === 'html') break;
+    //     target = target.parentNode;
+    //   }
+    //   return globalVerify;
+    // };
     window.addEventListener('scroll', showList);
+    window.addEventListener('click', showLayer);
     return () => {
       allItem = [];
       window.removeEventListener('scroll', showList);
+      window.removeEventListener('click', showLayer);
     };
   }, []);
 
-  const getPage = () => {
-    const tip = 65536;
-    let i = (page - 1) * tip;
-    const len = page * tip;
-    let all = [];
-    let line = [];
-    for (; i < len; i++) {
-      line.push(i);
-      if (line.length === 32) {
-        all.push(line);
-        line = [];
-      }
-    }
-    allItem = all;
-  };
-
   useEffect(() => {
+    const getPage = () => {
+      const tip = 65536;
+      let i = (page - 1) * tip;
+      const len = page * tip;
+      let all = [];
+      let line = [];
+      for (; i < len; i++) {
+        line.push(i);
+        if (line.length === 32) {
+          all.push(line);
+          line = [];
+        }
+      }
+      allItem = all;
+    };
     getPage();
     setItem(true);
   }, [page]);
 
+  const showModal = code => {
+    console.log(code);
+    setCode(code);
+    setIsModalVisible(true);
+  };
+
+  const contentModal = () => {
+    console.log(code);
+    const data = [
+      <span className={Style['utf-box']}>
+        <em>utf-8:</em> <i>{unicodeToUTF8(code).join(',')}</i>
+      </span>,
+      <span className={Style['utf-box']}>
+        <em>utf-16(ucs-2):</em> <i>{unicodeToUTF16(code).join(',')}</i>
+      </span>,
+      <span className={Style['utf-box']}>
+        <em>utf-32(ucs-4):</em> <i>{unicodeToUTF32(code).join(',')}</i>
+      </span>,
+    ];
+    return (
+      <List
+        size='small'
+        bordered
+        dataSource={data}
+        renderItem={item => <List.Item>{item}</List.Item>}
+      />
+    );
+  };
   return (
     <div>
       <div className={Style['select-box']}>
@@ -124,7 +171,6 @@ export default () => {
           </Select>
         </div>
       </div>
-
       <table
         cellSpacing='0'
         className={Style['box']}
@@ -135,9 +181,18 @@ export default () => {
           {trLine.map((item, index) => {
             const tdLine = item.map(i => {
               return (
-                <td className={Style[getclass(i)]} key={i}>
-                  <div dangerouslySetInnerHTML={{ __html: `&#${i}` }}></div>
-                  <p>{i}</p>
+                <td
+                  className={Style[getclass(i)]}
+                  key={i}
+                  onClick={() => showModal(i)}
+                >
+                  {/* <Popover content={content} title='Title' trigger='click'> */}
+                  <i
+                    className={Style['char']}
+                    dangerouslySetInnerHTML={{ __html: `&#${i}` }}
+                  ></i>
+                  <em className={Style['char-code']}>{i}</em>
+                  {/* </Popover> */}
                 </td>
               );
             });
@@ -145,6 +200,18 @@ export default () => {
           })}
         </tbody>
       </table>
+      <Modal
+        title='编码对照表'
+        visible={isModalVisible}
+        onOk={() => setIsModalVisible(false)}
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <div className={Style['modal-code']} style={{ fontFamily }}>
+          <i dangerouslySetInnerHTML={{ __html: `字符：&#${code}` }}></i>
+          <em>unicode编码：{code}</em>
+        </div>
+        {contentModal()}
+      </Modal>
     </div>
   );
 };

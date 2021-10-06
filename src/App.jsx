@@ -5,12 +5,12 @@ import './App.scss';
 
 import { Layout, Radio } from 'antd';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 function App(props) {
   let { location, push } = useHistory();
   const page =
-    location.pathname == '/' ? routerList[0].path : location.pathname;
+    location.pathname === '/' ? routerList[0].path : location.pathname;
   const change = e => {
     push(e.target.value);
   };

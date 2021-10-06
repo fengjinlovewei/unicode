@@ -8,7 +8,7 @@ import ISO_8859_1 from '@/pages/ISO_8859_1';
 import GB2312 from '@/pages/GB2312';
 import Unicode from '@/pages/Unicode';
 
-import IEEEdoc from '@/pages/IEEEdoc';
+//import IEEEdoc from '@/pages/IEEEdoc';
 
 export const routerList = [
   {
@@ -33,14 +33,14 @@ export const routerList = [
     path: '/Unicode',
     title: 'Unicode',
     component: Unicode,
-    cache: true,
-  },
-  {
-    path: '/IEEEdoc',
-    title: 'IEEE754-2008文档',
-    component: IEEEdoc,
     cache: false,
   },
+  // {
+  //   path: '/IEEEdoc',
+  //   title: 'IEEE754-2008文档',
+  //   component: IEEEdoc,
+  //   cache: false,
+  // },
 ];
 export default class IRouter extends Component {
   render() {

@@ -1,1 +1,21 @@
-
+.table {
+  font-size: 12px;
+  color: #000;
+  text-align: center;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  margin: 20px auto;
+  border: 1px solid #dfdfdf;
+  border-collapse: collapse;
+  word-break: break-word;
+  border-spacing: 0;
+  td,
+  th {
+    border: 1px solid #c0c0c0;
+    border-collapse: collapse;
+    padding: 4px 7px;
+    min-width: 30px;
+  }
+  th {
+    background-color: #fafafa;
+  }
+}

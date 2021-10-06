@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Input, Table } from 'antd';
-
+import React from 'react';
+import ascii from '@/static/images/ascii.jpeg';
 import Style from './index.module.scss';
 
 export default () => {
-  const [int, setInt] = useState('');
-
-  return <div></div>;
+  return (
+    <div className={Style['box']}>
+      <img src={ascii} alt='ascii' />
+    </div>
+  );
 };
