@@ -12,12 +12,12 @@ let allItem = [];
 export default () => {
   const [page, setPage] = useState(1);
   const [trLine, setTrLine] = useState([]);
-  const [font, setFont] = useState([]);
+  const [font, setFont] = useState(['iconfont1', 'iconfont2']);
   const [fontFamily, setFontFamily] = useState('Arial');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [code, setCode] = useState(0);
 
-  const getclass = index => {
+  const getclass = (index) => {
     if (index < 128) return 'c1';
     if (index < 2048) return 'c2';
     if (index >= 55296 && index <= 57343) return 'c4';
@@ -26,14 +26,14 @@ export default () => {
     return 'c6';
   };
 
-  const setItem = reset => {
-    const currentLine = allItem.splice(0, 50);
+  const setItem = (reset) => {
+    const currentLine = allItem.splice(0, 100);
 
     if (currentLine.length > 0) {
       if (reset) {
         setTrLine(currentLine);
       } else {
-        setTrLine(item => [...item, ...currentLine]);
+        setTrLine((item) => [...item, ...currentLine]);
       }
     }
   };
@@ -47,11 +47,11 @@ export default () => {
         if (response.status === 200 || response.status === 304) {
           const data = response.data;
           if (data.code === 0) {
-            setFont(data.data);
+            setFont((item) => [...item, ...data.data]);
           }
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
     const showList = _.throttle(() => {
@@ -63,11 +63,11 @@ export default () => {
         window.pageYOffset ||
         document.body.scrollTop;
 
-      if (scrollTop + wh + 200 > dh) {
+      if (scrollTop + wh + 1000 > dh) {
         setItem();
       }
     }, 100);
-    const showLayer = e => {
+    const showLayer = (e) => {
       //console.log(e.target);
     };
     // const getGlobalVerifyFliter = (target) => {
@@ -109,7 +109,7 @@ export default () => {
     setItem(true);
   }, [page]);
 
-  const showModal = code => {
+  const showModal = (code) => {
     console.log(code);
     setCode(code);
     setIsModalVisible(true);
@@ -130,10 +130,10 @@ export default () => {
     ];
     return (
       <List
-        size='small'
+        size="small"
         bordered
         dataSource={data}
-        renderItem={item => <List.Item>{item}</List.Item>}
+        renderItem={(item) => <List.Item>{item}</List.Item>}
       />
     );
   };
@@ -163,7 +163,7 @@ export default () => {
             onChange={setFontFamily}
             style={{ width: 200 }}
           >
-            {font.map(item => (
+            {font.map((item) => (
               <Option value={item} key={item}>
                 {item}
               </Option>
@@ -172,27 +172,25 @@ export default () => {
         </div>
       </div>
       <table
-        cellSpacing='0'
+        cellSpacing="0"
         className={Style['box']}
-        border='1'
+        border="1"
         style={{ fontFamily }}
       >
         <tbody>
           {trLine.map((item, index) => {
-            const tdLine = item.map(i => {
+            const tdLine = item.map((i) => {
               return (
                 <td
                   className={Style[getclass(i)]}
                   key={i}
                   onClick={() => showModal(i)}
                 >
-                  {/* <Popover content={content} title='Title' trigger='click'> */}
                   <i
                     className={Style['char']}
                     dangerouslySetInnerHTML={{ __html: `&#${i}` }}
                   ></i>
                   <em className={Style['char-code']}>{i}</em>
-                  {/* </Popover> */}
                 </td>
               );
             });
@@ -201,7 +199,7 @@ export default () => {
         </tbody>
       </table>
       <Modal
-        title='编码对照表'
+        title="编码对照表"
         visible={isModalVisible}
         onOk={() => setIsModalVisible(false)}
         onCancel={() => setIsModalVisible(false)}

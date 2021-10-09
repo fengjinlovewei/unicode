@@ -1,0 +1,143 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 1949425 */
+  src: url('iconfont.woff2?t=1633767736212') format('woff2'),
+       url('iconfont.woff?t=1633767736212') format('woff'),
+       url('iconfont.ttf?t=1633767736212') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconbaitianqing:before {
+  content: "\41";
+}
+
+.iconwumai:before {
+  content: "\42";
+}
+
+.iconshachenbao:before {
+  content: "\43";
+}
+
+.iconyangsha:before {
+  content: "\44";
+}
+
+.iconqiangshachenbao:before {
+  content: "\45";
+}
+
+.iconfuchen:before {
+  content: "\46";
+}
+
+.iconbaitianduoyun:before {
+  content: "\47";
+}
+
+.iconyejianqing:before {
+  content: "\48";
+}
+
+.iconyejianduoyun:before {
+  content: "\e612";
+}
+
+.iconyin:before {
+  content: "\e613";
+}
+
+.iconyejianzhenyu:before {
+  content: "\e614";
+}
+
+.iconbaitianzhenyu:before {
+  content: "\e615";
+}
+
+.iconleizhenyu:before {
+  content: "\e616";
+}
+
+.iconyujiaxue:before {
+  content: "\e617";
+}
+
+.iconleizhenyubanyoubingbao:before {
+  content: "\e618";
+}
+
+.iconbaoyu:before {
+  content: "\e619";
+}
+
+.iconxiaoyu:before {
+  content: "\e61a";
+}
+
+.icondayu:before {
+  content: "\e61b";
+}
+
+.icondabaoyu:before {
+  content: "\e61c";
+}
+
+.iconzhongyu:before {
+  content: "\e61d";
+}
+
+.iconbaitianzhenxue:before {
+  content: "\e61e";
+}
+
+.iconzhongxue:before {
+  content: "\e61f";
+}
+
+.iconxiaoxue:before {
+  content: "\e620";
+}
+
+.icontedabaoyu:before {
+  content: "\e621";
+}
+
+.iconyejianzhenxue:before {
+  content: "\e622";
+}
+
+.iconbaoxue:before {
+  content: "\e623";
+}
+
+.iconwu:before {
+  content: "\e624";
+}
+
+.icondaxue:before {
+  content: "\e625";
+}
+
+.icondongyu:before {
+  content: "\e626";
+}
+
+.iconzhixianghuishou:before {
+  content: "\e69c";
+}
+
+.iconkehuishou-buliaolei:before {
+  content: "\e69d";
+}
+
+.iconkehuishou-jinshulei:before {
+  content: "\e69e";
+}
+

@@ -125,3 +125,18 @@ h6 {
   word-wrap: break-word;
   word-break: break-all;
 }
+
+@font-face {
+  font-family: 'iconfont1'; /* Project id 2855600 */
+  src: url('../static/fonts/font1/iconfont.woff?2t=1633760015017')
+      format('woff2'),
+    url('../static/fonts/font1/iconfont.woff?t=1633760015017') format('woff'),
+    url('../static/fonts/font1/iconfont.ttf?t=1633760015017') format('truetype');
+}
+@font-face {
+  font-family: 'iconfont2'; /* Project id 2855600 */
+  src: url('../static/fonts/font2/iconfont.woff?2t=1633760015017')
+      format('woff2'),
+    url('../static/fonts/font2/iconfont.woff?t=1633760015017') format('woff'),
+    url('../static/fonts/font2/iconfont.ttf?t=1633760015017') format('truetype');
+}
