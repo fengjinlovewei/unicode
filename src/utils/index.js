@@ -151,11 +151,11 @@ export function unicodeToUTF16(unicode) {
     const Vx = unicode - 0x10000;
     /**
      * 0xffc00 = 1111111111 0000000000
-     * 0xf3ff = 1111111111
+     * 0x3ff = 1111111111
      *
      */
     const Vh = (Vx & 0xffc00) >> 10;
-    const Vl = Vx & 0xf3ff;
+    const Vl = Vx & 0x3ff;
 
     const w1 = Vh | 0xd800;
     const w2 = Vl | 0xdc00;
