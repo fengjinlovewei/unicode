@@ -51,6 +51,10 @@ export default () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+
+  useEffect(() => {
     axios.defaults.baseURL = 'http://localhost:1991';
     axios
       .get('/font')
