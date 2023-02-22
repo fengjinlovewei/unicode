@@ -1,5 +1,12 @@
 .select-box {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+
   display: flex;
+  justify-content: center;
+  padding-top: 20px;
   .select-box-item {
     margin-right: 40px;
   }
@@ -29,7 +36,7 @@
       font-size: 11px;
       color: #999;
       margin: 0;
-      font-family: "Arial Hebrew";
+      font-family: 'Arial Hebrew';
     }
   }
 }

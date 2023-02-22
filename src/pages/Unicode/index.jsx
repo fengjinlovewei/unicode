@@ -12,7 +12,19 @@ let allItem = [];
 export default () => {
   const [page, setPage] = useState(1);
   const [trLine, setTrLine] = useState([]);
-  const [font, setFont] = useState(['iconfont1', 'iconfont2']);
+  const [font, setFont] = useState([
+    'Arial',
+    'Microsoft YaHei',
+    'STFangsong',
+    'SimHei',
+    'Microsoft JhengHei',
+    'STBaoliSC-Regular',
+    'PMingLiu',
+    'MingLiu',
+    'DFKai-SB',
+    'FangSong',
+    'KaiTi',
+  ]);
   const [fontFamily, setFontFamily] = useState('Arial');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [code, setCode] = useState(0);
