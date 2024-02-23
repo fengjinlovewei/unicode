@@ -55,21 +55,21 @@ export default () => {
   }, [page]);
 
   useEffect(() => {
-    axios.defaults.baseURL = 'http://localhost:1991';
-    axios
-      .get('/font')
-      .then(function (response) {
-        console.log(response.data);
-        if (response.status === 200 || response.status === 304) {
-          const data = response.data;
-          if (data.code === 0) {
-            setFont((item) => [...item, ...data.data]);
-          }
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axios.defaults.baseURL = 'http://localhost:1991';
+    // axios
+    //   .get('/font')
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //     if (response.status === 200 || response.status === 304) {
+    //       const data = response.data;
+    //       if (data.code === 0) {
+    //         setFont((item) => [...item, ...data.data]);
+    //       }
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
     const showList = _.throttle(() => {
       //函数体
       const wh = document.body.offsetHeight;
